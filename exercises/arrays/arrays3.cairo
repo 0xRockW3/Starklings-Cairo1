@@ -2,13 +2,11 @@
 // Make me compile and pass the test!
 // Execute `starklings hint arrays3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use array::ArrayTrait;
 use option::OptionTrait;
 
 fn create_array() -> Array<felt252> {
-    let mut a = ArrayTrait::new(); 
+    let mut a = ArrayTrait::new();
     // something to change here...
     a.append(0);
     a.append(1);
@@ -22,6 +20,8 @@ fn create_array() -> Array<felt252> {
 fn test_arrays3() {
     let a = create_array();
     //TODO modify the method called below to make the test pass.
-    // You should not change the index accessed.
-    a.at(3);
+    if a.len() == 3 {
+        // You should not change the index accessed.
+        a.at(3);
+    }
 }

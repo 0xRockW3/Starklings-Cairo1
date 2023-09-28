@@ -3,8 +3,7 @@
 // the Array gets created in the function itself and passed back to the main
 // function.
 // Execute `starklings hint move_semantics4` or use the `hint` watch subcommand for a hint.
-
-// I AM NOT DONE
+ 
 use array::ArrayTrait;
 use array::ArrayTCloneImpl;
 use array::SpanTrait;
