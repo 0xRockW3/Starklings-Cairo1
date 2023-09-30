@@ -64,14 +64,13 @@ impl FishTraitImpl of FishTrait {
     } 
 }
 
+// TODO: implement DogTrait for the type Dog
 impl DogTraitImpl of DogTrait {
     fn walk(ref self: Dog) -> () {
         self = Dog { noise: 'woof', distance: 1 }
     } 
 }
 
-
-// TODO: implement DogTrait for the type Dog
 
 #[test]
 fn test_traits3() {

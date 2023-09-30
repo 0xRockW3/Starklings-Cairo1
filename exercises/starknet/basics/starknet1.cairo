@@ -27,14 +27,17 @@ mod JoesContract {
 mod test {
     use array::ArrayTrait;
     use array::SpanTrait;
+    
     use super::JoesContract;
     use starknet::syscalls::deploy_syscall;
     use traits::TryInto;
     use option::OptionTrait;
     use starknet::class_hash::Felt252TryIntoClassHash;
     use core::result::ResultTrait;
+    
     use super::IJoesContractDispatcher;
     use super::IJoesContractDispatcherTrait;
+
     use starknet::ContractAddress;
     use debug::PrintTrait;
 
@@ -52,7 +55,8 @@ mod test {
             JoesContract::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
         )
             .unwrap();
-        let contract0 = IJoesContractDispatcher { contract_address: address0 };
+        let contract0 = IJoesContractDispatcher { 
+            contract_address: address0 };
         contract0
     }
 }
