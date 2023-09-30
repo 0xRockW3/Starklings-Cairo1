@@ -7,7 +7,7 @@
 
 // Execute `starklings hint traits3` or use the `hint` watch subcommand for a hint.
 
-// I cheated :) don't know how to do it that it's not clear. I need to rad more about that...
+// I AM NOT DONE
 
 #[derive(Copy, Drop)]
 struct Fish {
@@ -25,6 +25,14 @@ trait AnimalTrait<T> {
     fn new() -> T;
     fn make_noise(self: T) -> felt252;
     fn get_distance(self: T) -> u32;
+}
+
+trait FishTrait {
+    fn swim(ref self: Fish) -> ();
+}
+
+trait DogTrait {
+    fn walk(ref self: Dog) -> ();
 }
 
 impl AnimalFishImpl of AnimalTrait<Fish> {
@@ -51,42 +59,32 @@ impl AnimalDogImpl of AnimalTrait<Dog> {
     }
 }
 
-trait FishTrait {
-    fn swim(ref self: Fish) -> ();
+// TODO: implement FishTrait for the type Fish
+impl FishTraitImpl of FishTrait {
+    fn swim(ref self: Fish) -> () {
+        self = Fish { noise: 'blub', distance: 1 }
+    } 
 }
 
-trait DogTrait {
-    fn walk(ref self: Dog) -> ();
+impl DogTraitImpl of DogTrait {
+    fn walk(ref self: Dog) -> () {
+        self = Dog { noise: 'woof', distance: 1 }
+    } 
 }
 
-// TODO: implement FishTrait for the type Fish  
-impl FishImpl of FishTrait {
-    fn swim(ref self: Fish) -> () {}
-}
 
-// TODO: implement DogTrait for the type Dog 
-impl DogImpl of DogTrait {
-    fn walk(ref self: Dog) -> () {}
-}
-
-// hint
-// You can implement multiple traits for a type.
-// When a trait is destined to be implemented by a single type, you don't need to use generics.
-// If you're having trouble updating the distance value in the `Fish` and `Dog` impls, remember that you need to first
-// 1. Destructure the object into mutable variables
-// 2. Update the distance variable
-// 3. Reconstruct `self` with the updated variables (`self = MyStruct { ... }`) 
+// TODO: implement DogTrait for the type Dog
 
 #[test]
 fn test_traits3() {
     // Don't modify this test!
     let mut salmon: Fish = AnimalTrait::new();
     salmon.swim();
-    // assert(salmon.make_noise() == 'blub', 'Wrong noise');
-    // assert(salmon.get_distance() == 1, 'Wrong distance');
+    assert(salmon.make_noise() == 'blub', 'Wrong noise');
+    assert(salmon.get_distance() == 1, 'Wrong distance');
 
     let mut dog: Dog = AnimalTrait::new();
     dog.walk();
-    // assert(dog.make_noise() == 'woof', 'Wrong noise');
-    // assert(dog.get_distance() == 1, 'Wrong distance');
+    assert(dog.make_noise() == 'woof', 'Wrong noise');
+    assert(dog.get_distance() == 1, 'Wrong distance');
 }

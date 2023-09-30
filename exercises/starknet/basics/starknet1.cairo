@@ -15,6 +15,7 @@ mod JoesContract {
     #[storage]
     struct Storage {}
 
+    #[external(v0)]
     impl IJoesContractImpl of super::IJoesContract<ContractState> {
         fn get_owner(self: @ContractState) -> felt252 {
             'Joe'
